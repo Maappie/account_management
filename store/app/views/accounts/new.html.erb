@@ -1,2 +1,56 @@
-<h1>Accounts#new</h1>
-<p>Find me in app/views/accounts/new.html.erb</p>
+<h1>Create new account</h1>
+<h2>Fill up the forms</h2>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<%= form_with model: @account, url: accounts_path, local: true, data: { turbo: false } do |f| %>
+  <div>
+    <%= f.label :email, "Email account" %><br>
+    <% if @account.errors[:email].any? %>
+      <ul>
+        <% @account.errors[:email].each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= f.text_field :email, autocomplete: "email", required: true %>
+  </div>
+  <div>
+    <%= f.label :username %><br>
+    <% if @account.errors[:username].any? %>
+      <ul>
+        <% @account.errors[:username].each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= f.text_field :username, autocomplete: "username", required: true %>
+  </div>
+  <div>
+    <%= f.label :password %><br>
+    <% if @account.errors[:password].any? %>
+      <ul>
+        <% @account.errors[:password].each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= f.text_field :password, autocomplete: "new-password", required: true %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %><br>
+    <% if @account.errors[:password_confirmation].any? %>
+      <ul>
+        <% @account.errors[:password_confirmation].each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+  </div>
+  <%= f.submit "Create account" %>
+<% end %>
+
+<%= button_to "Back to home page", root_path, method: :get %>

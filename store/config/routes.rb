@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   root "home#index"
    
-  resources :accounts, only: [:new, :create]
+  resources :accounts, only: [:new, :create, :index]
+
+  get "accounts/verify_code", to: "accounts#verify_code" , as: "verify_account"
+  post "accounts/verify_code", to: "accounts#process_verification"
+  post 'accounts/resend_email', to: 'accounts#resend_email', as: 'resend_account_email'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

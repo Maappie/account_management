@@ -1,0 +1,19 @@
+<h1>Verification</h1>
+
+<h2>Enter your verification number</h2>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_with url: accounts_verify_code_path, local: true, data: { turbo: false } do |forms| %>
+  <%= forms.label :input_verification %>
+  <%= forms.text_field :input_verification %>
+  <%= forms.submit "Verify Code" %>
+<% end %>
+
+<%= button_to "Resend Verification Email", resend_account_email_path, method: :post %>
