@@ -1,0 +1,16 @@
+<h1>Verification</h1>
+
+
+<% if flash[:alert] %>
+    <div>
+        <%= flash[:alert] %>
+    </div>
+<% end %>
+
+<%= form_with url: process_verification_forgot_password_index_path, local: true, data: {turbo: false} do |forms| %>
+
+    <%= forms.label :input_code, "Verification Code" %>
+    <%= forms.text_field :input_code %>
+
+    <%= forms.submit "Verify"%>
+<% end %>

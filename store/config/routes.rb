@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-
   root "home#index"
    
   resources :accounts, only: [:new, :create, :index]
-
   get "accounts/verify_code", to: "accounts#verify_code" , as: "verify_account"
   post "accounts/verify_code", to: "accounts#process_verification"
   post 'accounts/resend_email', to: 'accounts#resend_email', as: 'resend_account_email'
 
+  resources :forgot_password, only: [:new, :create] do
+    collection do
+      get :verify_code
+      post :process_verification
+      get :update_password
+      post :process_update_password
+      
+    end 
+  end 
+
+ 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

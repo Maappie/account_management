@@ -1,0 +1,19 @@
+<h1>Forgot password</h1>
+
+
+<% if flash[:notice] %>
+    <div class = "alert alert-sucess">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+<% if flash[:alert] %>
+    <div class = "alert alert-sucess">
+        <%= flash[:alert] %>
+    </div>
+<% end %>
+
+<%= form_with url: forgot_password_index_path, local: true, data: { turbo: false } do |form| %>
+  <%= form.label :email, "Email account" %>
+  <%= form.text_field :email %>
+  <%= form.submit "Send Verification" %>
+<% end %>
