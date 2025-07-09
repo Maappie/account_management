@@ -1,0 +1,18 @@
+<h1>Login#new</h1>
+<p>Find me in app/views/login/new.html.erb</p>
+
+<%= form_with url: login_account_path, local: true, data: { turbo: false } do |forms| %>
+
+    <div>
+        <%= forms.label :email, "Email account" %>
+        <%= forms.text_field :email %>
+    </div>
+
+    <div>
+        <%= forms.label :password%>
+        <%= forms.password_field :password %>
+    </div>
+
+    <%= forms.submit "Login" %>
+<% end %>
+
