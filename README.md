@@ -1,3 +1,2 @@
-A structured account management with sign up and login. 
-Verification code in sign up.
-Session management implementation.
+My very first account management system that have sign up, forgot password and login. It also have verification code by sending email verification code. 
+It also handles session handling for login.
